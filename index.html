@@ -67,18 +67,35 @@
 
   /* ───── Header ───── */
   .header {
-    padding: 0.5in 0.75in 0.18in;
+    padding: 0.42in 0.75in 0.2in;
     position: relative;
+    border-top: 3px solid #F8971D;
   }
 
   .doc-id {
     position: absolute;
-    top: 0.5in;
+    top: 0.42in;
     right: 0.75in;
-    font-size: 7.5pt;
+    text-align: right;
+    line-height: 1.25;
+  }
+
+  .doc-id-label {
+    display: block;
+    font-size: 6.5pt;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #555555;
+    letter-spacing: 2px;
+    color: #999999;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .doc-id-value {
+    display: block;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    color: #000000;
     text-transform: uppercase;
   }
 
@@ -159,42 +176,43 @@
     color: #ffffff;
     background: #F8971D;
     padding: 5px 10px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   h1 {
-    font-size: 19pt;
+    font-size: 20pt;
     font-weight: 500;
     color: #000000;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
+    line-height: 1.15;
+    letter-spacing: -0.4px;
   }
 
   .subtitle {
-    font-size: 10.5pt;
-    color: #555555;
-    margin-top: 4px;
-    font-weight: 400;
-    line-height: 1.35;
+    font-size: 12pt;
+    color: #1a1a1a;
+    margin-top: 8px;
+    font-weight: 500;
+    line-height: 1.3;
     max-width: 6in;
+    letter-spacing: -0.15px;
   }
 
   .client-name {
-    font-size: 8pt;
-    color: #555555;
-    margin-top: 8px;
-    font-weight: 500;
-    letter-spacing: 1px;
+    font-size: 7.5pt;
+    color: #777777;
+    margin-top: 9px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
     text-transform: uppercase;
   }
 
   /* ───── Body ───── */
   .body {
-    padding: 0.32in 0.75in 0.35in;
+    padding: 0.3in 0.75in 0.3in;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 22px;
     min-height: 0;
   }
 
@@ -202,7 +220,7 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .section-title {
@@ -227,9 +245,9 @@
   .checklist li {
     display: grid;
     grid-template-columns: 28px 1fr;
-    align-items: center;
+    align-items: start;
     gap: 18px;
-    padding: 16px 4px;
+    padding: 9px 4px;
   }
 
   .checkbox {
@@ -243,6 +261,7 @@
     justify-content: center;
     flex-shrink: 0;
     transition: background 0.15s;
+    margin-top: 1px;
   }
 
   .checkbox::after {
@@ -272,12 +291,61 @@
     letter-spacing: 0.05px;
   }
 
+  .check-optional {
+    font-style: italic;
+    font-weight: 400;
+    color: #888888;
+    font-size: 9pt;
+  }
+
+  .check-explain {
+    font-size: 8.5pt;
+    font-style: italic;
+    font-weight: 300;
+    color: #777777;
+    line-height: 1.4;
+    margin-top: 3px;
+  }
+
   .check-required {
     font-size: 7pt;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     color: var(--accent);
+  }
+
+  /* ───── Callout (Documentation Requirements) ───── */
+  .callout {
+    padding-top: 12px;
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  .callout-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #666666;
+    margin-bottom: 4px;
+  }
+
+  .callout-title-icon {
+    width: 12px;
+    height: 12px;
+    color: #F8971D;
+    flex-shrink: 0;
+  }
+
+  .callout-text {
+    font-size: 8pt;
+    line-height: 1.5;
+    color: #777777;
+    font-style: italic;
+    font-weight: 400;
   }
 
   /* ───── Two column lower ───── */
@@ -364,56 +432,109 @@
   }
 
   /* Submit Documents — own section */
-  .submit-row {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 18px 4px 4px;
+  .submit-card {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    border: 1px solid var(--rule);
+    background: #fbfaf7;
   }
 
-  .submit-instruction {
-    font-size: 9pt;
-    color: #555555;
-    font-weight: 400;
-    letter-spacing: 0.1px;
+  .submit-cell {
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .submit-cell + .submit-cell {
+    border-left: 1px solid var(--rule);
+  }
+
+  .submit-eyebrow {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #888888;
+  }
+
+  .submit-email-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .submit-icon {
+    width: 16px;
+    height: 16px;
+    color: #F8971D;
+    flex-shrink: 0;
   }
 
   .submit-email {
-    font-size: 10pt;
-    font-weight: 400;
+    font-size: 10.5pt;
+    font-weight: 500;
     color: #000000;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.1px;
     word-break: break-all;
+    line-height: 1.2;
   }
 
-  .submit-agent {
-    margin-top: 2px;
+  .agent-block {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 2px;
   }
 
   .agent-name {
     font-size: 10pt;
-    font-weight: 400;
+    font-weight: 500;
     color: #000000;
     letter-spacing: 0.1px;
-  }
-
-  .agent-title {
-    font-size: 8pt;
-    font-weight: 400;
-    color: #555555;
-    letter-spacing: 0.3px;
-    margin-top: 2px;
+    line-height: 1.3;
   }
 
   .agent-license {
     font-size: 8pt;
     font-weight: 400;
-    color: #555555;
+    color: #777777;
     letter-spacing: 0.3px;
+  }
+
+  .submit-link-row {
+    display: none;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--rule);
+    padding: 12px 18px;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .submit-link-row.is-visible {
+    display: flex;
+  }
+
+  .submit-link-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .submit-link {
+    font-size: 9.5pt;
+    font-weight: 500;
+    color: #0a3a66;
+    text-decoration: none;
+    word-break: break-all;
+    line-height: 1.3;
+  }
+
+  .submit-link:hover {
+    text-decoration: underline;
   }
 
   .submit-action {
@@ -564,10 +685,13 @@
   <div class="page">
 
     <div class="header">
-      <div class="doc-id">BOV-101</div>
+      <div class="doc-id">
+        <span class="doc-id-label">Reference</span>
+        <span class="doc-id-value">BOV-101</span>
+      </div>
       <div class="header-eyebrow">Broker Opinion of Value</div>
       <h1>Property Information Request</h1>
-      <div class="subtitle" id="propertyName">123 Main Street</div>
+      <div class="subtitle" id="propertyName">Brewster Plaza</div>
       <div class="client-name" id="clientName">Prepared for John Smith</div>
     </div>
 
@@ -582,19 +706,31 @@
         <ul class="checklist">
           <li>
             <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div class="check-label">Current rent roll</div>
+            <div>
+              <div class="check-label">Current rent roll</div>
+              <div class="check-explain">used to establish in-place income and occupancy</div>
+            </div>
           </li>
           <li>
             <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div class="check-label">Trailing 12-month operating statement</div>
+            <div>
+              <div class="check-label">Trailing 12-month operating statement</div>
+              <div class="check-explain">used to verify property cash flow</div>
+            </div>
           </li>
           <li>
             <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div class="check-label">Tenant leases or lease abstracts</div>
+            <div>
+              <div class="check-label">Tenant leases or lease abstracts</div>
+              <div class="check-explain">used to identify lease terms that affect value</div>
+            </div>
           </li>
           <li>
             <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div class="check-label">CAM reconciliation statement</div>
+            <div>
+              <div class="check-label">CAM reconciliation statement <span class="check-optional">(if available)</span></div>
+              <div class="check-explain">used to confirm expense recoveries</div>
+            </div>
           </li>
         </ul>
       </div>
@@ -604,20 +740,40 @@
           <div class="section-title">Submit Information</div>
           <div class="section-rule"></div>
         </div>
-        <div class="submit-row">
-          <div class="submit-instruction">Email to:</div>
-          <div class="submit-agent">
-            <div class="agent-name" id="agentName">Joe Ferrandino</div>
-            <div class="agent-license" id="agentLicense">NY #10401398636</div>
+        <div class="submit-card">
+          <div class="submit-cell">
+            <div class="submit-eyebrow">Email</div>
+            <div class="submit-email-row">
+              <svg class="submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+                <path d="m3 7 9 6 9-6"/>
+              </svg>
+              <div class="submit-email" id="agentEmail">jferrandino@northeastpcg.com</div>
+            </div>
           </div>
-          <div class="submit-email" id="agentEmail">jferrandino@northeastpcg.com</div>
+          <div class="submit-cell">
+            <div class="submit-eyebrow">Agent</div>
+            <div class="agent-block">
+              <div class="agent-name" id="agentName">Joe Ferrandino</div>
+              <div class="agent-license" id="agentLicense">NY #10401398636</div>
+            </div>
+          </div>
+          <div class="submit-link-row" id="submitLinkRow">
+            <div class="submit-eyebrow">Dropbox Link</div>
+            <div class="submit-link-inner">
+              <svg class="submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7h6l2 2h10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+              </svg>
+              <a class="submit-link" id="agentLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="notices">
         <div>
           <div class="notice-label">Confidential</div>
-          <div class="notice-text">All information is kept strictly confidential and handled securely. An NDA is available upon request.</div>
+          <div class="notice-text">All records are kept strictly confidential and handled securely. Your property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.</div>
         </div>
         <div>
           <div class="notice-label">Complimentary</div>
@@ -641,8 +797,16 @@
         </div>
       </div>
 
-      <div class="disclaimer">
-        <span class="disclaimer-label">Missing Records?</span> Detailed financial records help us produce the most accurate valuation, but they aren't required. In cases where documentation is unavailable, we can streamline the BOV using basic information on the rents, expenses, and lease structure. Please contact your agent for assistance with any missing information.
+      <div class="callout">
+        <div class="callout-text">
+          <div class="callout-title">
+            <svg class="callout-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F8971D" aria-hidden="true">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/>
+            </svg>
+            Documentation Requirements
+          </div>
+          Complete financial records support the most accurate market value estimate but are not required to initiate the BOV process. Our team regularly prepares opinions of value using basic details on rent, expenses, and lease structure. Your agent will work directly with you to address any missing information and help you fill in the gaps.
+        </div>
       </div>
 
     </div>
@@ -656,13 +820,15 @@
 
   <div class="toolbar">
     <div class="toolbar-label">Property Name</div>
-    <input type="text" id="propertyInput" value="123 Main Street" oninput="updateProperty(this.value)" />
+    <input type="text" id="propertyInput" value="Brewster Plaza" oninput="updateProperty(this.value)" />
     <div class="toolbar-label">Client Name</div>
     <input type="text" id="clientInput" value="John Smith" oninput="updateClient(this.value)" />
     <div class="toolbar-label">Agent Name</div>
     <input type="text" id="nameInput" value="Joe Ferrandino" oninput="updateName(this.value)" />
     <div class="toolbar-label">Agent Email</div>
     <input type="email" id="emailInput" value="jferrandino@northeastpcg.com" oninput="updateEmail(this.value)" />
+    <div class="toolbar-label">Dropbox Link (optional)</div>
+    <input type="url" id="linkInput" value="" placeholder="https://www.dropbox.com/..." oninput="updateLink(this.value)" />
     <div class="toolbar-label">License #</div>
     <input type="text" id="licenseInput" value="NY #10401398636" oninput="updateLicense(this.value)" />
     <button class="toolbar-btn" onclick="window.print()">Print / Save PDF</button>
@@ -683,6 +849,20 @@
     }
     function updateClient(val) {
       document.getElementById('clientName').textContent = 'Prepared for ' + val;
+    }
+    function updateLink(val) {
+      const row = document.getElementById('submitLinkRow');
+      const link = document.getElementById('agentLink');
+      const trimmed = (val || '').trim();
+      if (trimmed) {
+        link.href = trimmed;
+        link.textContent = trimmed;
+        row.classList.add('is-visible');
+      } else {
+        link.removeAttribute('href');
+        link.textContent = '';
+        row.classList.remove('is-visible');
+      }
     }
   </script>
 </body>
