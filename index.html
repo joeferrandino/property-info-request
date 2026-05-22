@@ -62,7 +62,8 @@
       height: 11in;
       margin: 0;
     }
-    .toolbar { display: none !important; }
+    .toolbar,
+    .print-btn { display: none !important; }
   }
 
   /* ───── Header ───── */
@@ -506,7 +507,7 @@
   .submit-link-row {
     display: none;
     grid-column: 1 / -1;
-    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
     padding: 12px 18px;
     flex-direction: column;
     gap: 6px;
@@ -552,6 +553,10 @@
     gap: 32px;
     padding-top: 22px;
     border-top: 1px solid var(--rule);
+  }
+
+  .notices.single-col {
+    grid-template-columns: 1fr;
   }
 
   .notice-label {
@@ -622,6 +627,7 @@
     position: fixed;
     right: 24px;
     top: 40px;
+    bottom: 40px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -633,6 +639,7 @@
     padding: 16px;
     width: 220px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    overflow-y: auto;
   }
 
   .toolbar-label {
@@ -679,6 +686,256 @@
     background: #d97f0d;
     color: #ffffff;
   }
+
+  .print-btn {
+    position: fixed;
+    top: 12px;
+    right: 244px;
+    transform: translateX(100%);
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #F8971D;
+    color: #ffffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 1px solid #F8971D;
+    border-radius: 999px;
+    padding: 5px 11px 5px 9px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(248, 151, 29, 0.3);
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .print-btn:hover {
+    background: #e0820b;
+    border-color: #e0820b;
+    box-shadow: 0 2px 6px rgba(248, 151, 29, 0.4);
+  }
+
+  .print-btn-icon {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+
+  .toolbar-divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 6px 0 2px;
+  }
+
+  .toolbar-section-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #000000;
+    margin-top: 4px;
+  }
+
+  .editor-list {
+    list-style: none;
+    display: block;
+    min-height: 140px;
+    max-height: 140px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    border: 1px solid var(--rule);
+    padding: 4px;
+    background: #fafafa;
+  }
+
+  .editor-list:empty::after {
+    content: "No items";
+    font-size: 7.5pt;
+    color: #999999;
+    font-style: italic;
+    padding: 3px;
+  }
+
+  .editor-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 0;
+    border-bottom: 1px dashed var(--rule-soft);
+  }
+
+  .editor-item:last-child {
+    border-bottom: none;
+  }
+
+  .editor-item-text {
+    flex: 1;
+    font-size: 7.5pt;
+    line-height: 1.25;
+    color: #000000;
+    word-break: break-word;
+  }
+
+  .editor-item-explain {
+    display: block;
+    font-size: 7pt;
+    font-style: italic;
+    color: #888888;
+    margin-top: 1px;
+  }
+
+  .editor-remove {
+    background: none;
+    border: 1px solid var(--rule);
+    color: #888888;
+    width: 15px;
+    height: 15px;
+    line-height: 1;
+    font-size: 9pt;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.15s;
+  }
+
+  .editor-remove:hover {
+    background: #dc2626;
+    color: #ffffff;
+    border-color: #dc2626;
+  }
+
+  .custom-add-row {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  .custom-add-row input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toolbar-add-btn {
+    background: #F8971D;
+    color: #ffffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 14pt;
+    font-weight: 700;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.15s;
+  }
+
+  .toolbar-add-btn:hover {
+    background: #e0820b;
+  }
+
+  .mode-switch-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    padding: 2px 0;
+  }
+
+  .mode-switch-label {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #b0b0b0;
+    cursor: pointer;
+    transition: color 0.25s;
+    white-space: nowrap;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .mode-switch-label.active[data-mode="bov"] {
+    color: #F8971D;
+  }
+
+  .mode-switch-label.active[data-mode="dd"] {
+    color: #B55D37;
+  }
+
+  .circle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background: #F8971D;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background 0.28s;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+  }
+
+  .circle-switch[data-mode="dd"] {
+    background: #B55D37;
+  }
+
+  .circle-switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .circle-switch[data-mode="dd"] .circle-switch-thumb {
+    transform: translateX(20px);
+  }
+
+  .editor-item.inactive .editor-item-text {
+    color: #999999;
+  }
+
+  .editor-add {
+    background: var(--paper);
+    border: 1px solid #F8971D;
+    color: #F8971D;
+    width: 15px;
+    height: 15px;
+    line-height: 1;
+    font-size: 9pt;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.15s;
+  }
+
+  .editor-add:hover {
+    background: #16a34a;
+    color: #ffffff;
+    border-color: #16a34a;
+  }
 </style>
 </head>
 <body>
@@ -687,9 +944,9 @@
     <div class="header">
       <div class="doc-id">
         <span class="doc-id-label">Reference</span>
-        <span class="doc-id-value">BOV-101</span>
+        <span class="doc-id-value" id="referenceValue">BOV-1</span>
       </div>
-      <div class="header-eyebrow">Broker Opinion of Value</div>
+      <div class="header-eyebrow" id="headerEyebrow">Broker Opinion of Value</div>
       <h1>Property Information Request</h1>
       <div class="subtitle" id="propertyName">Brewster Plaza</div>
       <div class="client-name" id="clientName">Prepared for John Smith</div>
@@ -703,36 +960,7 @@
           <div class="section-rule"></div>
         </div>
 
-        <ul class="checklist">
-          <li>
-            <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div>
-              <div class="check-label">Current rent roll</div>
-              <div class="check-explain">used to establish in-place income and occupancy</div>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div>
-              <div class="check-label">Trailing 12-month operating statement</div>
-              <div class="check-explain">used to verify property cash flow</div>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div>
-              <div class="check-label">Tenant leases or lease abstracts</div>
-              <div class="check-explain">used to identify lease terms that affect value</div>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-            <div>
-              <div class="check-label">CAM reconciliation statement <span class="check-optional">(if available)</span></div>
-              <div class="check-explain">used to confirm expense recoveries</div>
-            </div>
-          </li>
-        </ul>
+        <ul class="checklist" id="checklist"></ul>
       </div>
 
       <div>
@@ -741,6 +969,15 @@
           <div class="section-rule"></div>
         </div>
         <div class="submit-card">
+          <div class="submit-link-row" id="submitLinkRow">
+            <div class="submit-eyebrow">Dropbox Upload Link</div>
+            <div class="submit-link-inner">
+              <svg class="submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 7h6l2 2h10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+              </svg>
+              <a class="submit-link" id="agentLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+          </div>
           <div class="submit-cell">
             <div class="submit-eyebrow">Email</div>
             <div class="submit-email-row">
@@ -758,54 +995,33 @@
               <div class="agent-license" id="agentLicense">NY #10401398636</div>
             </div>
           </div>
-          <div class="submit-link-row" id="submitLinkRow">
-            <div class="submit-eyebrow">Dropbox Link</div>
-            <div class="submit-link-inner">
-              <svg class="submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 7h6l2 2h10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
-              </svg>
-              <a class="submit-link" id="agentLink" href="#" target="_blank" rel="noopener noreferrer"></a>
-            </div>
-          </div>
         </div>
       </div>
 
-      <div class="notices">
-        <div>
+      <div class="notices" id="noticesSection">
+        <div id="confidentialNotice">
           <div class="notice-label">Confidential</div>
-          <div class="notice-text">All records are kept strictly confidential and handled securely. Property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.</div>
+          <div class="notice-text" id="confidentialText">All records are kept strictly confidential and handled securely. Property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.</div>
         </div>
-        <div>
+        <div id="complimentaryNotice">
           <div class="notice-label">Complimentary</div>
           <div class="notice-text">No cost or obligation to sell. Provided as a free advisory service to our clients.</div>
         </div>
       </div>
 
-      <div>
+      <div id="turnaroundSection">
         <div class="section-header">
           <div class="section-title">Turnaround</div>
           <div class="section-rule"></div>
         </div>
         <div class="timeline-wrap">
           <div class="timeline-metric">
-            <div class="timeline-value">4–7</div>
-            <div class="timeline-unit">Business Days</div>
+            <div class="timeline-value" id="turnaroundValue">4–7</div>
+            <div class="timeline-unit" id="turnaroundUnit">Business Days</div>
           </div>
-          <div class="timeline-note">
+          <div class="timeline-note" id="turnaroundNote">
             A Broker Opinion of Value is typically completed and ready to present within 4–7 business days pending the full submission of information requested.
           </div>
-        </div>
-      </div>
-
-      <div class="callout">
-        <div class="callout-text">
-          <div class="callout-title">
-            <svg class="callout-title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#F8971D" aria-hidden="true">
-              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/>
-            </svg>
-            Documentation Requirements
-          </div>
-          Complete financial records support the most accurate market value estimate but are not required to initiate the BOV process. Our team regularly prepares opinions of value using basic details on rent, expenses, and lease structure. Your agent will work directly with you to address any missing information and help you fill in the gaps.
         </div>
       </div>
 
@@ -818,20 +1034,46 @@
 
   </div>
 
+  <button class="print-btn" onclick="window.print()">
+    <svg class="print-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 6 2 18 2 18 9"/>
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+      <rect x="6" y="14" width="12" height="8"/>
+    </svg>
+    Print / Save
+  </button>
+
   <div class="toolbar">
+    <div class="toolbar-label">Request Type</div>
+    <div class="mode-switch-row">
+      <button class="mode-switch-label active" data-mode="bov" id="modeLabelBov" onclick="setMode('bov')">BOV</button>
+      <button class="circle-switch" id="modeSwitch" data-mode="bov" onclick="toggleMode()" aria-label="Toggle request type"><span class="circle-switch-thumb"></span></button>
+      <button class="mode-switch-label" data-mode="dd" id="modeLabelDd" onclick="setMode('dd')">DD</button>
+    </div>
+
     <div class="toolbar-label">Property Name</div>
     <input type="text" id="propertyInput" value="Brewster Plaza" oninput="updateProperty(this.value)" />
     <div class="toolbar-label">Client Name</div>
     <input type="text" id="clientInput" value="John Smith" oninput="updateClient(this.value)" />
+
+    <div class="toolbar-divider"></div>
+    <div class="toolbar-section-title">Checklist Items</div>
+    <ul class="editor-list" id="editorList"></ul>
+    <div class="custom-add-row">
+      <input type="text" id="newItemLabel" placeholder="Add custom item..." />
+      <button class="toolbar-add-btn" onclick="addChecklistItem()" title="Add">+</button>
+    </div>
+    <div class="toolbar-divider"></div>
+
     <div class="toolbar-label">Agent Name</div>
     <input type="text" id="nameInput" value="Joe Ferrandino" oninput="updateName(this.value)" />
     <div class="toolbar-label">License #</div>
     <input type="text" id="licenseInput" value="NY #10401398636" oninput="updateLicense(this.value)" />
+    <div class="toolbar-label">Dropbox Upload Link (optional)</div>
+    <input type="url" id="linkInput" value="" placeholder="https://www.dropbox.com/..." oninput="updateLink(this.value)" />
     <div class="toolbar-label">Agent Email</div>
     <input type="email" id="emailInput" value="jferrandino@northeastpcg.com" oninput="updateEmail(this.value)" />
-    <div class="toolbar-label">Dropbox Link (optional)</div>
-    <input type="url" id="linkInput" value="" placeholder="https://www.dropbox.com/..." oninput="updateLink(this.value)" />
-    <button class="toolbar-btn" onclick="window.print()">Print / Save PDF</button>
+
   </div>
 
   <script>
@@ -864,6 +1106,189 @@
         row.classList.remove('is-visible');
       }
     }
+
+    const MODES = {
+      bov: {
+        eyebrow: 'Broker Opinion of Value',
+        reference: 'BOV-1',
+        turnaroundValue: '4–7',
+        turnaroundUnit: 'Business Days',
+        turnaroundNote: 'A Broker Opinion of Value is typically completed and ready to present within 4–7 business days pending the full submission of information requested.',
+        confidentialText: 'All records are kept strictly confidential and handled securely. Property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.',
+        showComplimentary: true
+      },
+      dd: {
+        eyebrow: 'Due Diligence',
+        reference: 'DD-1',
+        turnaroundValue: 'Rolling',
+        turnaroundUnit: 'Added as received',
+        turnaroundNote: 'Due diligence materials are added to the data room as they are received. There is no fixed turnaround — please submit items as they become available so we can begin marketing and respond to buyer requests promptly.',
+        confidentialText: 'All materials submitted are held in a secure data room and handled in accordance with the confidentiality terms of your executed listing agreement. Sensitive financial information is released only to qualified prospects who have executed a Confidentiality Agreement, consistent with the marketing strategy agreed upon with your representing agent.',
+        showComplimentary: false
+      }
+    };
+
+    const checklistsByMode = {
+      bov: [
+        'Current Rent Roll / Tenant Summary',
+        'Annual Income & Expense Summary'
+      ],
+      dd: [
+        'Current Rent Roll / Tenant Summary',
+        'Annual Income & Expense Summary'
+      ]
+    };
+
+    const COMMON_ITEMS = [
+      'Current Rent Roll / Tenant Summary',
+      'Annual Income & Expense Summary',
+      'Trailing 12-Month Profit & Loss Statement',
+      'Copies of Tenant Leases or Lease Abstracts',
+      'CAM Reconciliation Statement',
+      'Capital Expenditures History',
+      'Trailing 3-Month Profit & Loss Statement',
+      'Current Operating Budget',
+      'Real Estate Tax Bills',
+      'Utility Bills (Last 12 Months)',
+      'Insurance Declaration Page',
+      'Service Contracts',
+      'Survey / ALTA Survey',
+      'Title Policy',
+      'Phase I Environmental Report',
+      'Floor Plans / Site Plan',
+      'Certificates of Occupancy'
+    ];
+
+    let currentMode = 'bov';
+    let checklistItems = checklistsByMode[currentMode];
+
+    function toggleMode() {
+      setMode(currentMode === 'bov' ? 'dd' : 'bov');
+    }
+
+    function setMode(mode) {
+      if (!MODES[mode]) return;
+      currentMode = mode;
+      checklistItems = checklistsByMode[mode];
+      const cfg = MODES[mode];
+      document.getElementById('headerEyebrow').textContent = cfg.eyebrow;
+      document.getElementById('referenceValue').textContent = cfg.reference;
+      document.getElementById('turnaroundValue').textContent = cfg.turnaroundValue;
+      document.getElementById('turnaroundUnit').textContent = cfg.turnaroundUnit;
+      document.getElementById('turnaroundNote').textContent = cfg.turnaroundNote;
+      document.getElementById('turnaroundSection').style.display = mode === 'dd' ? 'none' : '';
+      document.getElementById('confidentialText').textContent = cfg.confidentialText;
+      document.getElementById('complimentaryNotice').style.display = cfg.showComplimentary ? '' : 'none';
+      document.getElementById('noticesSection').classList.toggle('single-col', !cfg.showComplimentary);
+      document.getElementById('modeSwitch').setAttribute('data-mode', mode);
+      document.getElementById('modeLabelBov').classList.toggle('active', mode === 'bov');
+      document.getElementById('modeLabelDd').classList.toggle('active', mode === 'dd');
+      renderChecklist();
+      renderEditor();
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    function formatLabel(label) {
+      const escaped = escapeHtml(label);
+      return escaped.replace(/\(([^)]+)\)/g, '<span class="check-optional">($1)</span>');
+    }
+
+    function getOrderedChecklist() {
+      const activeSet = new Set(checklistItems);
+      const commonActive = COMMON_ITEMS.filter(i => activeSet.has(i));
+      const customs = checklistItems.filter(i => !COMMON_ITEMS.includes(i));
+      return [...commonActive, ...customs];
+    }
+
+    function renderChecklist() {
+      const list = document.getElementById('checklist');
+      list.innerHTML = getOrderedChecklist().map(label => `
+        <li>
+          <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+          <div>
+            <div class="check-label">${formatLabel(label)}</div>
+          </div>
+        </li>
+      `).join('');
+    }
+
+    function renderEditor() {
+      const editor = document.getElementById('editorList');
+      const activeSet = new Set(checklistItems);
+      const commonRows = COMMON_ITEMS.map((label, i) => {
+        const isActive = activeSet.has(label);
+        const btn = isActive
+          ? `<button class="editor-remove" onclick="toggleCommonItem(${i})" title="Remove">&times;</button>`
+          : `<button class="editor-add" onclick="toggleCommonItem(${i})" title="Add">+</button>`;
+        return `
+          <li class="editor-item${isActive ? '' : ' inactive'}">
+            <div class="editor-item-text">${escapeHtml(label)}</div>
+            ${btn}
+          </li>
+        `;
+      });
+      const customs = checklistItems.filter(label => !COMMON_ITEMS.includes(label));
+      const customRows = customs.map((label, i) => `
+        <li class="editor-item">
+          <div class="editor-item-text">${escapeHtml(label)}</div>
+          <button class="editor-remove" onclick="removeCustomByIndex(${i})" title="Remove">&times;</button>
+        </li>
+      `);
+      editor.innerHTML = [...commonRows, ...customRows].join('');
+    }
+
+    function toggleCommonItem(commonIndex) {
+      const label = COMMON_ITEMS[commonIndex];
+      if (!label) return;
+      const idx = checklistItems.indexOf(label);
+      if (idx >= 0) {
+        checklistItems.splice(idx, 1);
+      } else {
+        checklistItems.push(label);
+      }
+      renderChecklist();
+      renderEditor();
+    }
+
+    function addChecklistItem() {
+      const labelInput = document.getElementById('newItemLabel');
+      const label = labelInput.value.trim();
+      if (!label) {
+        labelInput.focus();
+        return;
+      }
+      if (!checklistItems.includes(label)) {
+        checklistItems.push(label);
+      }
+      labelInput.value = '';
+      renderChecklist();
+      renderEditor();
+      labelInput.focus();
+    }
+
+    function removeCustomByIndex(customIndex) {
+      const customs = checklistItems.filter(label => !COMMON_ITEMS.includes(label));
+      const label = customs[customIndex];
+      if (!label) return;
+      const idx = checklistItems.indexOf(label);
+      if (idx >= 0) {
+        checklistItems.splice(idx, 1);
+        renderChecklist();
+        renderEditor();
+      }
+    }
+
+    document.getElementById('newItemLabel').addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); addChecklistItem(); }
+    });
+
+    renderChecklist();
+    renderEditor();
   </script>
 </body>
 </html>
