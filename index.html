@@ -1001,7 +1001,7 @@
       <div class="notices" id="noticesSection">
         <div id="confidentialNotice">
           <div class="notice-label">Confidential</div>
-          <div class="notice-text" id="confidentialText">All records are kept strictly confidential and handled securely. Property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.</div>
+          <div class="notice-text" id="confidentialText">All records are kept strictly confidential and handled securely. Property information is used solely to prepare a valuation and never shared with third parties. An NDA is available upon request.</div>
         </div>
         <div id="complimentaryNotice">
           <div class="notice-label">Complimentary</div>
@@ -1016,11 +1016,11 @@
         </div>
         <div class="timeline-wrap">
           <div class="timeline-metric">
-            <div class="timeline-value" id="turnaroundValue">4–7</div>
+            <div class="timeline-value" id="turnaroundValue">7–10</div>
             <div class="timeline-unit" id="turnaroundUnit">Business Days</div>
           </div>
           <div class="timeline-note" id="turnaroundNote">
-            A Broker Opinion of Value is typically completed and ready to present within 4–7 business days pending the full submission of information requested.
+            A Broker Opinion of Value is typically completed and ready to present within 7–10 business days pending the full submission of information requested.
           </div>
         </div>
       </div>
@@ -1028,7 +1028,7 @@
     </div>
 
     <div class="footer">
-      <div class="footer-brand">Northeast Private Client Group<sup>®</sup></div>
+      <div class="footer-brand">NortheastPCG, Inc.</div>
       <div class="footer-right">northeastpcg.com</div>
     </div>
 
@@ -1074,6 +1074,10 @@
     <div class="toolbar-label">Agent Email</div>
     <input type="email" id="emailInput" value="jferrandino@northeastpcg.com" oninput="updateEmail(this.value)" />
 
+    <div class="toolbar-divider"></div>
+    <div class="toolbar-label">Turnaround Time</div>
+    <input type="text" id="turnaroundInput" value="7–10" oninput="updateTurnaround(this.value)" />
+
   </div>
 
   <script>
@@ -1091,6 +1095,11 @@
     }
     function updateClient(val) {
       document.getElementById('clientName').textContent = 'Prepared for ' + val;
+    }
+    function updateTurnaround(val) {
+      document.getElementById('turnaroundValue').textContent = val;
+      const template = MODES[currentMode].turnaroundNote;
+      document.getElementById('turnaroundNote').textContent = template.replace('{value}', val);
     }
     function updateLink(val) {
       const row = document.getElementById('submitLinkRow');
@@ -1111,10 +1120,10 @@
       bov: {
         eyebrow: 'Broker Opinion of Value',
         reference: 'BOV-1',
-        turnaroundValue: '4–7',
+        turnaroundValue: '7–10',
         turnaroundUnit: 'Business Days',
-        turnaroundNote: 'A Broker Opinion of Value is typically completed and ready to present within 4–7 business days pending the full submission of information requested.',
-        confidentialText: 'All records are kept strictly confidential and handled securely. Property information is never shared with buyers, lenders, or third parties without your written consent. An NDA is available upon request.',
+        turnaroundNote: 'A Broker Opinion of Value is typically completed and ready to present within {value} business days pending the full submission of information requested.',
+        confidentialText: 'All records are kept strictly confidential and handled securely. Property information is used solely to prepare a valuation and never shared with third parties. An NDA is available upon request.',
         showComplimentary: true
       },
       dd: {
@@ -1130,19 +1139,16 @@
 
     const checklistsByMode = {
       bov: [
-        'Current Rent Roll / Tenant Summary',
-        'Annual Income & Expense Summary'
+        'Current rent roll detailing the square footage of each unit, base rent, lease start and end dates, rent escalations, and renewal options.',
+        'Trailing 12-month Profit & Loss statement on a monthly basis. If a T12 is not readily available, a Profit & Loss statement for the most recent full calendar year.'
       ],
       dd: [
-        'Current Rent Roll / Tenant Summary',
-        'Annual Income & Expense Summary'
+        'Current rent roll detailing the square footage of each unit, base rent, lease start and end dates, rent escalations, and renewal options.',
+        'Trailing 12-month Profit & Loss statement on a monthly basis. If a T12 is not readily available, a Profit & Loss statement for the most recent full calendar year.'
       ]
     };
 
     const COMMON_ITEMS = [
-      'Current Rent Roll / Tenant Summary',
-      'Annual Income & Expense Summary',
-      'Trailing 12-Month Profit & Loss Statement',
       'Copies of Tenant Leases or Lease Abstracts',
       'CAM Reconciliation Statement',
       'Capital Expenditures History',
@@ -1174,8 +1180,9 @@
       document.getElementById('headerEyebrow').textContent = cfg.eyebrow;
       document.getElementById('referenceValue').textContent = cfg.reference;
       document.getElementById('turnaroundValue').textContent = cfg.turnaroundValue;
+      document.getElementById('turnaroundInput').value = cfg.turnaroundValue;
       document.getElementById('turnaroundUnit').textContent = cfg.turnaroundUnit;
-      document.getElementById('turnaroundNote').textContent = cfg.turnaroundNote;
+      document.getElementById('turnaroundNote').textContent = cfg.turnaroundNote.replace('{value}', cfg.turnaroundValue);
       document.getElementById('turnaroundSection').style.display = mode === 'dd' ? 'none' : '';
       document.getElementById('confidentialText').textContent = cfg.confidentialText;
       document.getElementById('complimentaryNotice').style.display = cfg.showComplimentary ? '' : 'none';
