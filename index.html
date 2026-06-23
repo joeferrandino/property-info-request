@@ -1202,7 +1202,7 @@
 
     function formatLabel(label) {
       const escaped = escapeHtml(label);
-      return escaped.replace(/\(([^)]+)\)/g, '<span class="check-optional">($1)</span>');
+      return escaped.replace(/\(([^)]*\s[^)]*)\)/g, '<span class="check-optional">($1)</span>');
     }
 
     function getOrderedChecklist() {
